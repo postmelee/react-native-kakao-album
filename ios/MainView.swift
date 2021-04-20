@@ -8,7 +8,7 @@
 import UIKit
 
 class MainView: UIView {
-  weak var galleryViewController: GalleryViewController?
+  weak var mainViewController: MainViewController?
   
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -17,10 +17,10 @@ class MainView: UIView {
   override func layoutSubviews() {
     super.layoutSubviews()
     
-    if galleryViewController == nil {
+    if  mainViewController == nil {
       embed()
     } else {
-      galleryViewController?.view.frame = bounds
+      mainViewController?.view.frame = bounds
     }
   }
   
@@ -29,12 +29,12 @@ class MainView: UIView {
       return
     }
     
-    let vc = GalleryViewController()
+    let vc = MainViewController()
     parentVC.addChild(vc)
     addSubview(vc.view)
     vc.view.frame = bounds
     vc.didMove(toParent: parentVC)
-    self.galleryViewController = vc
+    self.mainViewController = vc
   }
   
   required init?(coder: NSCoder) {

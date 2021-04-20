@@ -1,19 +1,17 @@
 //
-//  GalleryView.swift
+//  GalleryViewController.swift
 //  KakaoAlbum
 //
-//  Created by 이태규 on 2021/04/15.
+//  Created by 이태규 on 2021/04/20.
 //
 
 import UIKit
 import Photos
 
 class GalleryViewController: UIViewController {
-  
   private let imageManager = PHCachingImageManager()
   private var allPhotos: PHFetchResult<PHAsset>!
-  private var indexOfSelectedPhotos: [Int] = []
-  
+  var indexOfSelectedPhotos: [Int] = []
   private let requestTargetSize = CGSize(width: 200, height: 200)
   private let requestOptions: PHImageRequestOptions = {
     let options = PHImageRequestOptions()
@@ -32,14 +30,15 @@ class GalleryViewController: UIViewController {
     cv.register(ImageCell.self, forCellWithReuseIdentifier: K.cellIdentifier)
     cv.backgroundColor = .white
     return cv
-  }()
+    }()
   
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    setupView()
-    setupConstraint()
-    fetchAllPhotos()
-  }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+      view.addSubview(collectionView)
+      setupView()
+      setupConstraint()
+    }
+    
   func setupView() {
     view.addSubview(collectionView)
     collectionView.delegate = self
@@ -72,9 +71,8 @@ class GalleryViewController: UIViewController {
         self.imageManager.startCachingImages(for: assets, targetSize: self.requestTargetSize, contentMode: .aspectFill, options: self.requestOptions)
       }
     }
-    
-    
   }
+
 }
 
 extension GalleryViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
