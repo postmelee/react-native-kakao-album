@@ -10,6 +10,8 @@ import Photos
 
 class MainViewController: UIViewController {
   
+  let stackView = UIStackView()
+  let thumbnailVC = ThumbnailViewController()
   let galleryVC = GalleryViewController()
   
   override func viewDidLoad() {
@@ -18,12 +20,22 @@ class MainViewController: UIViewController {
     setupConstraint()
   }
   func setupView() {
-    self.addChild(galleryVC)
-    self.view.addSubview(galleryVC.view)
+    stackView.axis = .vertical
+    stackView.alignment = .fill
+    stackView.distribution = .fill
+    stackView.spacing = 0
+    stackView.translatesAutoresizingMaskIntoConstraints = false
+    stackView.addArrangedSubview(thumbnailVC.view)
+    stackView.addArrangedSubview(galleryVC.view)
+    self.view.addSubview(stackView)
   }
   
   func setupConstraint() {
-    galleryVC.view.frame = self.view.bounds
+    stackView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+    stackView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+    stackView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+    stackView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+    thumbnailVC.view.heightAnchor.constraint(equalToConstant: 91).isActive = true
   }
   
 }
