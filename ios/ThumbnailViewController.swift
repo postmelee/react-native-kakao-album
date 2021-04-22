@@ -18,6 +18,7 @@ class ThumbnailViewController: UIViewController {
     let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
     cv.register(ThumbnailCell.self, forCellWithReuseIdentifier: K.thumbnailIdentifier)
     cv.translatesAutoresizingMaskIntoConstraints = false
+    cv.backgroundColor = .white
     return cv
   }()
   
