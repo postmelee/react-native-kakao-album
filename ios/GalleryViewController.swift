@@ -8,10 +8,20 @@
 import UIKit
 import Photos
 
+protocol GalleryViewControllerProtocol {
+  func setSelectedPhoto(photos: [PHAsset])
+}
+
 class GalleryViewController: UIViewController {
   private let imageManager = PHCachingImageManager()
   private var allPhotos: PHFetchResult<PHAsset>?
-  var indexOfSelectedPhotos: [Int] = []
+  var selectedPhotos: [PHAsset] = [] {
+    didSet {
+      delegate?.setSelectedPhoto(photos: selectedPhotos)
+    }
+  }
+  var delegate: GalleryViewControllerProtocol?
+  
   private let requestTargetSize = CGSize(width: 200, height: 200)
   private let requestOptions: PHImageRequestOptions = {
     let options = PHImageRequestOptions()
@@ -107,19 +117,21 @@ extension GalleryViewController: UICollectionViewDelegate, UICollectionViewDataS
   
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     let selectedCell = collectionView.cellForItem(at: indexPath) as! ImageCell
-    selectedCell.selectedIndex = indexOfSelectedPhotos.count + 1
-    indexOfSelectedPhotos.append(indexPath.item)
+    selectedCell.selectedIndex = selectedPhotos.count + 1
+    if let safePhotos = allPhotos {
+      selectedPhotos.append(safePhotos[indexPath.item])
+    }
   }
   
   func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
     let selectedCell = collectionView.cellForItem(at: indexPath) as! ImageCell
     let indexOfSelectedCell = Int(selectedCell.IndexLabel.text!)! - 1
-    for i in indexOfSelectedCell..<indexOfSelectedPhotos.count {
-      let cellIndexPath = IndexPath(item: indexOfSelectedPhotos[i], section: 0)
-      if let cell = collectionView.cellForItem(at: cellIndexPath) as? ImageCell {
+    for i in indexOfSelectedCell..<selectedPhotos.count {
+      let cellIndex = allPhotos?.index(of: selectedPhotos[i])
+      if let safeIndex = cellIndex, let cell = collectionView.cellForItem(at: IndexPath(item: safeIndex, section: 0)) as? ImageCell {
         cell.decreaseIndex()
       }
     }
-    indexOfSelectedPhotos.remove(at: indexOfSelectedCell)
+    selectedPhotos.remove(at: indexOfSelectedCell)
   }
 }

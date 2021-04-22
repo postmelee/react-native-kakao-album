@@ -14,8 +14,14 @@ class MainViewController: UIViewController {
   let thumbnailVC = ThumbnailViewController()
   let galleryVC = GalleryViewController()
   
+  var selectedPhotos: [PHAsset] = [] {
+    didSet {
+    }
+  }
+  
   override func viewDidLoad() {
     super.viewDidLoad()
+    galleryVC.delegate = self
     setupView()
     setupConstraint()
   }
@@ -40,3 +46,10 @@ class MainViewController: UIViewController {
   
 }
 
+extension MainViewController: GalleryViewControllerProtocol {
+  func setSelectedPhoto(photos: [PHAsset]) {
+    self.selectedPhotos = photos
+  }
+  
+  
+}
