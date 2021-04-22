@@ -13,28 +13,19 @@ class ThumbnailViewController: UIViewController {
     let layout = UICollectionViewFlowLayout()
     layout.minimumLineSpacing = 8
     layout.scrollDirection = .horizontal
-    layout.sectionInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+    layout.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+    layout.itemSize = CGSize(width: 59, height: 59)
     let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
     cv.register(ThumbnailCell.self, forCellWithReuseIdentifier: K.thumbnailIdentifier)
     cv.translatesAutoresizingMaskIntoConstraints = false
-    cv.backgroundColor = .green
     return cv
   }()
   
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.automaticallyAdjustsScrollViewInsets = false
         setupViews()
         setupConstraints()
     }
-  
-  override func viewDidLayoutSubviews() {
-    super.viewDidLayoutSubviews()
-    if let layout = self.collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-      let height = self.collectionView.frame.size.height - layout.sectionInset.top - layout.sectionInset.bottom
-      layout.estimatedItemSize = CGSize(width: height, height: height)
-    }
-  }
   
   func setupViews() {
     view.addSubview(collectionView)
@@ -61,7 +52,6 @@ extension ThumbnailViewController: UICollectionViewDataSource {
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: K.thumbnailIdentifier, for: indexPath)
-    cell.backgroundColor = .blue
     return cell
   }
   
