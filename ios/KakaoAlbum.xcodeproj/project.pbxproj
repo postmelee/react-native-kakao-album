@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* KakaoAlbumTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* KakaoAlbumTests.m */; };
 		0A7EAEA6262E83E000EF47C5 /* ThumbnailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7EAEA5262E83E000EF47C5 /* ThumbnailCell.swift */; };
+		0AA66A692632BDC800307B5E /* ThumbnailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA66A682632BDC800307B5E /* ThumbnailModel.swift */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -40,6 +41,7 @@
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* KakaoAlbumTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KakaoAlbumTests.m; sourceTree = "<group>"; };
 		0A7EAEA5262E83E000EF47C5 /* ThumbnailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailCell.swift; sourceTree = "<group>"; };
+		0AA66A682632BDC800307B5E /* ThumbnailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailModel.swift; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* KakaoAlbum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KakaoAlbum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = KakaoAlbum/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = KakaoAlbum/AppDelegate.m; sourceTree = "<group>"; };
@@ -102,6 +104,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		0AA66A672632BDA500307B5E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0AA66A682632BDC800307B5E /* ThumbnailModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		13B07FAE1A68108700A75B9A /* KakaoAlbum */ = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +122,7 @@
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				E2B1265C2626EA1300DF0F55 /* KakaoAlbum-Bridging-Header.h */,
+				0AA66A672632BDA500307B5E /* Models */,
 				E271482426292D6100279E60 /* Views */,
 				E2B1267F2628199200DF0F55 /* MainViewController.swift */,
 				E297AB86262E744C00822431 /* GalleryViewController.swift */,
@@ -455,6 +466,7 @@
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				E271482726292D7F00279E60 /* ImageCell.swift in Sources */,
 				E297AB87262E744C00822431 /* GalleryViewController.swift in Sources */,
+				0AA66A692632BDC800307B5E /* ThumbnailModel.swift in Sources */,
 				0A7EAEA6262E83E000EF47C5 /* ThumbnailCell.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				E271482C2629358C00279E60 /* Constants.swift in Sources */,

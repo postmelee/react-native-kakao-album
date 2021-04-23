@@ -9,13 +9,15 @@ import UIKit
 import Photos
 
 protocol GalleryViewControllerProtocol {
-  func setSelectedPhoto(photos: [PHAsset])
+  func setSelectedPhoto(photos: [ThumbnailModel])
+  func presentCamera()
 }
 
 class GalleryViewController: UIViewController {
+  
   private let imageManager = PHCachingImageManager()
   private var allPhotos: PHFetchResult<PHAsset>?
-  var selectedPhotos: [PHAsset] = [] {
+  var selectedPhotos: [ThumbnailModel] = [] {
     didSet {
       delegate?.setSelectedPhoto(photos: selectedPhotos)
     }
@@ -97,6 +99,10 @@ extension GalleryViewController: UICollectionViewDelegate, UICollectionViewDataS
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: K.cellIdentifier, for: indexPath) as! ImageCell
+    if indexPath.item == 0 {
+      cell.ImageView.image = UIImage(named: "camera")
+      cell.representAssetIdentifier = "camera"
+    } else {
     if let safePhotos = allPhotos {
       let asset = safePhotos.object(at: indexPath.item)
       cell.representAssetIdentifier = asset.localIdentifier
@@ -107,6 +113,7 @@ extension GalleryViewController: UICollectionViewDelegate, UICollectionViewDataS
         }
       }
     }
+    }
     return cell
   }
   
@@ -115,11 +122,22 @@ extension GalleryViewController: UICollectionViewDelegate, UICollectionViewDataS
     return CGSize(width: width, height: width)
   }
   
+  func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+    if indexPath.item == 0 {
+      delegate?.presentCamera()
+      return false
+    }
+    return true
+  }
+  
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    
     let selectedCell = collectionView.cellForItem(at: indexPath) as! ImageCell
     selectedCell.selectedIndex = selectedPhotos.count + 1
     if let safePhotos = allPhotos {
-      selectedPhotos.append(safePhotos[indexPath.item])
+      let asset = safePhotos[indexPath.item]
+      let thumbnail = ThumbnailModel(image: nil, asset: asset, uri: asset.localIdentifier)
+      selectedPhotos.append(thumbnail)
     }
   }
   
@@ -127,7 +145,8 @@ extension GalleryViewController: UICollectionViewDelegate, UICollectionViewDataS
     let selectedCell = collectionView.cellForItem(at: indexPath) as! ImageCell
     let indexOfSelectedCell = Int(selectedCell.IndexLabel.text!)! - 1
     for i in indexOfSelectedCell..<selectedPhotos.count {
-      let cellIndex = allPhotos?.index(of: selectedPhotos[i])
+      guard let asset = selectedPhotos[i].asset else {return}
+      let cellIndex = allPhotos?.index(of: asset)
       if let safeIndex = cellIndex, let cell = collectionView.cellForItem(at: IndexPath(item: safeIndex, section: 0)) as? ImageCell {
         cell.decreaseIndex()
       }

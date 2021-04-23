@@ -59,10 +59,11 @@ class ThumbnailCell: UICollectionViewCell {
   }
   
   func setupConstraints() {
-    ImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5).isActive = true
-    ImageView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -5).isActive = true
-    ImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
-    ImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor).isActive = true
+    ImageView.frame = contentView.bounds
+//    ImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5).isActive = true
+//    ImageView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -5).isActive = true
+//    ImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor).isActive = true
+//    ImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor).isActive = true
     DeleteImage.widthAnchor.constraint(equalToConstant: 20).isActive = true
     DeleteImage.heightAnchor.constraint(equalToConstant: 20).isActive = true
     DeleteImage.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true

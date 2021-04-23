@@ -47,19 +47,23 @@ class ImageCell: UICollectionViewCell {
       indexLabel.text = "1"
       indexLabel.font = UIFont.boldSystemFont(ofSize: 11)
       indexLabel.translatesAutoresizingMaskIntoConstraints = false
+      indexLabel.textColor = .white
       return indexLabel
   }()
   
   let IndexView: UIView = {
-    let indexView = UIView(frame: CGRect(x: 8, y: 8, width: 24, height: 24))
+    let indexView = UIView()
       indexView.backgroundColor = UIColor(red: 0, green: 0.82, blue: 1, alpha: 1)
-      indexView.layer.cornerRadius = indexView.frame.size.width / 2
+      indexView.layer.cornerRadius = 12
+    indexView.translatesAutoresizingMaskIntoConstraints = false
       return indexView
   }()
   
   override var isSelected: Bool {
       didSet {
-        OverlayView.isHidden = !isSelected
+        if self.representAssetIdentifier != "camera" {
+          OverlayView.isHidden = !isSelected
+        }
       }
   }
   
@@ -74,6 +78,10 @@ class ImageCell: UICollectionViewCell {
   func setupConstraints() {
     IndexLabel.centerXAnchor.constraint(equalTo: IndexView.centerXAnchor).isActive = true
     IndexLabel.centerYAnchor.constraint(equalTo: IndexView.centerYAnchor).isActive = true
+    IndexView.widthAnchor.constraint(equalToConstant: 24).isActive = true
+    IndexView.heightAnchor.constraint(equalToConstant: 24).isActive = true
+    IndexView.topAnchor.constraint(equalTo: OverlayView.topAnchor, constant: 8).isActive = true
+    IndexView.rightAnchor.constraint(equalTo: OverlayView.rightAnchor, constant: -8).isActive = true
   }
 
   override init(frame: CGRect) {
@@ -97,7 +105,7 @@ class ImageCell: UICollectionViewCell {
       ImageView.image = nil
       IndexLabel.text = nil
       representAssetIdentifier = ""
-    OverlayView.isHidden = true
+      OverlayView.isHidden = true
   }
 //    @IBOutlet weak var OverlayView: UIView!
 //    @IBOutlet weak var ImageView: UIImageView!
