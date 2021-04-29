@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, {useEffect} from 'react';
 import type {Node} from 'react';
 import {
   SafeAreaView,
@@ -16,7 +16,8 @@ import {
   Text,
   useColorScheme,
   View,
-  requireNativeComponent
+  requireNativeComponent,
+  NativeModules
 } from 'react-native';
 
 import {
@@ -29,39 +30,19 @@ import {
 
 const KaKaoAlbumView = requireNativeComponent("KaKaoAlbumView")
 
-const Section = ({children, title}): Node => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
-
 const App: () => Node = () => {
   const isDarkMode = useColorScheme() === 'dark';
-
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
+  useEffect(() => {
+    const AlbumManager = NativeModules.AlbumManager;
+    AlbumManager.getAlbums().then(response => {
+      const data = JSON.parse(response)
+      console.log(data)
+    }).catch(e => console.log(e))
+  }, [])
   return (
     <SafeAreaView style={backgroundStyle}>
       <KaKaoAlbumView style={{

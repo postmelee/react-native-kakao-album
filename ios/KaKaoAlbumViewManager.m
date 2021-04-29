@@ -10,3 +10,7 @@
 
 @interface RCT_EXTERN_MODULE(KaKaoAlbumViewManager, RCTViewManager)
 @end
+
+@interface RCT_EXTERN_MODULE(AlbumManager, NSObject)
+RCT_EXTERN_METHOD(getAlbums: (RCTPromiseResolveBlock)resolve rejector: (RCTPromiseRejectBlock)reject)
+@end

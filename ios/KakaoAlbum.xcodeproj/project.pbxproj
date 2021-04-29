@@ -10,6 +10,9 @@
 		00E356F31AD99517003FC87E /* KakaoAlbumTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* KakaoAlbumTests.m */; };
 		0A7EAEA6262E83E000EF47C5 /* ThumbnailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A7EAEA5262E83E000EF47C5 /* ThumbnailCell.swift */; };
 		0AA66A692632BDC800307B5E /* ThumbnailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AA66A682632BDC800307B5E /* ThumbnailModel.swift */; };
+		0AF1995D263A511B00598FA3 /* AlbumModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF1995C263A511B00598FA3 /* AlbumModel.swift */; };
+		0AF19961263A642300598FA3 /* AlbumManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF19960263A642300598FA3 /* AlbumManager.swift */; };
+		0AF19966263A6A6400598FA3 /* KaKaoAlbumViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B126772627FB3900DF0F55 /* KaKaoAlbumViewManager.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -22,7 +25,6 @@
 		E297AB8B262E7BD900822431 /* ThumbnailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E297AB8A262E7BD900822431 /* ThumbnailViewController.swift */; };
 		E2B1266E2627DFC100DF0F55 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B1266D2627DFC100DF0F55 /* MainView.swift */; };
 		E2B126742627FA9900DF0F55 /* KaKaoAlbumViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B126732627FA9900DF0F55 /* KaKaoAlbumViewManager.swift */; };
-		E2B126782627FB3900DF0F55 /* KaKaoAlbumViewManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B126772627FB3900DF0F55 /* KaKaoAlbumViewManager.m */; };
 		E2B126802628199200DF0F55 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2B1267F2628199200DF0F55 /* MainViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +44,8 @@
 		00E356F21AD99517003FC87E /* KakaoAlbumTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KakaoAlbumTests.m; sourceTree = "<group>"; };
 		0A7EAEA5262E83E000EF47C5 /* ThumbnailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailCell.swift; sourceTree = "<group>"; };
 		0AA66A682632BDC800307B5E /* ThumbnailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailModel.swift; sourceTree = "<group>"; };
+		0AF1995C263A511B00598FA3 /* AlbumModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumModel.swift; sourceTree = "<group>"; };
+		0AF19960263A642300598FA3 /* AlbumManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumManager.swift; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* KakaoAlbum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KakaoAlbum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = KakaoAlbum/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = KakaoAlbum/AppDelegate.m; sourceTree = "<group>"; };
@@ -108,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				0AA66A682632BDC800307B5E /* ThumbnailModel.swift */,
+				0AF1995C263A511B00598FA3 /* AlbumModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -128,6 +133,7 @@
 				E297AB86262E744C00822431 /* GalleryViewController.swift */,
 				E297AB8A262E7BD900822431 /* ThumbnailViewController.swift */,
 				E2B126732627FA9900DF0F55 /* KaKaoAlbumViewManager.swift */,
+				0AF19960263A642300598FA3 /* AlbumManager.swift */,
 				E271482B2629358C00279E60 /* Constants.swift */,
 				E2B126772627FB3900DF0F55 /* KaKaoAlbumViewManager.m */,
 			);
@@ -458,16 +464,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2B126782627FB3900DF0F55 /* KaKaoAlbumViewManager.m in Sources */,
 				E2B126802628199200DF0F55 /* MainViewController.swift in Sources */,
 				E2B1266E2627DFC100DF0F55 /* MainView.swift in Sources */,
+				0AF19966263A6A6400598FA3 /* KaKaoAlbumViewManager.m in Sources */,
 				E297AB8B262E7BD900822431 /* ThumbnailViewController.swift in Sources */,
 				E2B126742627FA9900DF0F55 /* KaKaoAlbumViewManager.swift in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				0AF1995D263A511B00598FA3 /* AlbumModel.swift in Sources */,
 				E271482726292D7F00279E60 /* ImageCell.swift in Sources */,
 				E297AB87262E744C00822431 /* GalleryViewController.swift in Sources */,
 				0AA66A692632BDC800307B5E /* ThumbnailModel.swift in Sources */,
 				0A7EAEA6262E83E000EF47C5 /* ThumbnailCell.swift in Sources */,
+				0AF19961263A642300598FA3 /* AlbumManager.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 				E271482C2629358C00279E60 /* Constants.swift in Sources */,
 			);
