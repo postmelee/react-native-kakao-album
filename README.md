@@ -1,12 +1,13 @@
 # react-native-kakao-album
 
 `react-native-kakao-album` is an experimental iOS-native photo picker for
-React Native, built while developing ChikaChika.
+React Native apps.
 
 The goal was to avoid the slow photo-loading path commonly seen in hybrid app
 frameworks by moving the album grid, thumbnail caching, camera entry point, and
-selection UI into Swift/UIKit. In the ChikaChika app, this approach reduced the
-user photo loading experience from about 3 seconds to about 0.1 seconds.
+selection UI into Swift/UIKit. In the original production use case, this
+approach reduced the user photo loading experience from about 3 seconds to
+about 0.1 seconds.
 
 ## Project Status
 
@@ -34,9 +35,11 @@ React Native app.
 
 ## Why This Exists
 
-ChikaChika needed a photo upload flow similar to KakaoTalk's album picker. The
-default hybrid approach was too slow for a user-facing upload flow, especially
-when loading a large local photo library.
+A photo upload flow similar to KakaoTalk's album picker needs to feel immediate,
+even when the user has a large local photo library. A default hybrid approach
+can become too slow for that user-facing flow because album rendering,
+thumbnail loading, and selection state all compete with the JavaScript-driven UI
+path.
 
 This prototype keeps the heavy album and thumbnail work inside the iOS native
 layer:
@@ -133,15 +136,6 @@ and handle authorization states explicitly before reading the photo library.
   normalized before production use.
 - Android support is not implemented.
 - The project uses legacy React Native 0.64-era tooling.
-
-## Portfolio Context
-
-This module was created as part of ChikaChika's photo upload flow. It represents
-the native-module work behind the portfolio item:
-
-> Hybrid app framework's slow user photo loading was improved from about
-> 3 seconds to about 0.1 seconds by implementing a Swift + Objective-C native
-> module.
 
 ## License
 
